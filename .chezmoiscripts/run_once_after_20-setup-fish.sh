@@ -13,11 +13,7 @@ if command -v fish >/dev/null 2>&1; then
   # Set Fish as default login shell if needed
   if [[ "$SHELL" != *"fish"* ]]; then
     echo "==> Changing default shell to Fish..."
-    if command -v sudo >/dev/null 2>&1; then
-      sudo chsh -s "$(which fish)" "$USER" || chsh -s "$(which fish)" || true
-    else
-      chsh -s "$(which fish)" || true
-    fi
+    chsh -s "$(which fish)" 2>/dev/null || true
   fi
 fi
 

@@ -11,20 +11,46 @@ echo "==> [chezmoi] Checking system packages for {{ .chezmoi.osRelease.name | de
 
 {{ if eq .chezmoi.osRelease.id "rocky" "rhel" "centos" "fedora" "almalinux" -}}
 echo "==> Detected RedHat/Rocky family (DNF)..."
-if command -v sudo >/dev/null 2>&1; then
-  sudo dnf install -y epel-release || true
-  sudo dnf install -y fish git curl fzf ripgrep btop util-linux-user tar wget || true
-  sudo dnf install -y bat zoxide || true
+missing_pkgs=()
+for bin in fish git curl fzf rg btop; do
+  if ! command -v "$bin" >/dev/null 2>&1; then
+    missing_pkgs+=("$bin")
+  fi
+done
+
+if [ ${#missing_pkgs[@]} -gt 0 ]; then
+  echo "==> Installing missing packages: ${missing_pkgs[*]}"
+  if command -v sudo >/dev/null 2>&1; then
+    sudo dnf install -y epel-release || true
+    sudo dnf install -y fish git curl fzf ripgrep btop util-linux-user tar wget || true
+    sudo dnf install -y bat zoxide || true
+  fi
+else
+  echo "==> Base packages already present."
 fi
+
 if command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
   ln -sf "$(command -v fdfind)" "$HOME/.local/bin/fd"
 fi
 
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" "raspbian" -}}
 echo "==> Detected Debian/Ubuntu family (APT)..."
-if command -v sudo >/dev/null 2>&1; then
-  sudo apt-get update && sudo apt-get install -y fish git curl fzf ripgrep btop batcat fdfind tar wget || true
+missing_pkgs=()
+for bin in fish git curl fzf rg btop batcat fdfind; do
+  if ! command -v "$bin" >/dev/null 2>&1; then
+    missing_pkgs+=("$bin")
+  fi
+done
+
+if [ ${#missing_pkgs[@]} -gt 0 ]; then
+  echo "==> Installing missing packages: ${missing_pkgs[*]}"
+  if command -v sudo >/dev/null 2>&1; then
+    sudo apt-get update && sudo apt-get install -y fish git curl fzf ripgrep btop batcat fdfind tar wget || true
+  fi
+else
+  echo "==> Base packages already present."
 fi
+
 if [[ -x /usr/bin/batcat && ! -e "$HOME/.local/bin/bat" ]]; then
   ln -sf /usr/bin/batcat "$HOME/.local/bin/bat"
 fi
