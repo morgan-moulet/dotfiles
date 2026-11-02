@@ -48,12 +48,12 @@ sudo apt install -y fish git curl fzf ripgrep btop batcat fdfind
 
 #### 🔵 Arch Linux / Manjaro (`pacman`)
 ```bash
-sudo pacman -S --needed fish git curl fzf ripgrep btop eza bat fd zoxide starship
+sudo pacman -S --needed fish git curl fzf ripgrep btop eza bat fd zoxide starship ttf-jetbrains-mono-nerd
 ```
 
 #### 🍏 macOS (`brew`)
 ```bash
-brew install fish git curl fzf ripgrep btop eza bat fd zoxide starship
+brew install fish git curl fzf ripgrep btop eza bat fd zoxide starship font-jetbrains-mono-nerd-font
 ```
 
 #### 🟢 openSUSE (`zypper`)
@@ -63,10 +63,10 @@ sudo zypper install -y fish git curl fzf ripgrep btop bat zoxide
 
 ---
 
-### Step 2: Install Modern CLI Tools (if not in package manager)
+### Step 2: Install Modern CLI Tools & Nerd Font (if not in package manager)
 
 ```bash
-mkdir -p ~/.local/bin
+mkdir -p ~/.local/bin ~/.local/share/fonts
 
 # Starship Prompt
 curl -sS https://starship.rs/install.sh | sh -s -- -y -b ~/.local/bin
@@ -77,6 +77,10 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 # Eza (modern ls)
 curl -sL https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_64-unknown-linux-musl.tar.gz | tar -xz -C ~/.local/bin/ ./eza
 chmod +x ~/.local/bin/eza
+
+# JetBrainsMono Nerd Font (for Desktop terminals & IDEs: IntelliJ, VSCode, GNOME Terminal)
+curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz | tar -xJ -C ~/.local/share/fonts/ JetBrainsMonoNerdFont-Regular.ttf JetBrainsMonoNerdFont-Bold.ttf
+command -v fc-cache >/dev/null 2>&1 && fc-cache -f ~/.local/share/fonts || true
 ```
 
 ---
@@ -129,3 +133,26 @@ chsh -s "$(which fish)"
   ```bash
   chezmoi add ~/.gitconfig
   ```
+
+---
+
+## 🎨 IDE & Desktop Terminal Font Configuration
+
+To display Nerd Font icons in your IDE or graphical terminal emulator:
+
+### 🔹 IntelliJ IDEA / PyCharm / WebStorm
+1. Open **Settings** (`Ctrl+Alt+S` on Linux/Windows, `Cmd+,` on macOS).
+2. Navigate to **Editor** > **Color Scheme** > **Console Font**.
+3. Check **Use console font instead of the default**.
+4. Set **Font** to **`JetBrainsMono Nerd Font`**.
+5. In **Tools** > **Terminal**, verify **Use console font** is checked (or choose `JetBrainsMono Nerd Font` directly).
+6. Open a new terminal tab (`Alt+F12`).
+
+### 🔹 VS Code
+1. Open **Settings** (`Ctrl+,`) and search for `terminal.integrated.fontFamily`.
+2. Set the value to `'JetBrainsMono Nerd Font'`.
+
+### 🔹 GNOME Terminal / Alacritty / Kitty
+* **GNOME Terminal:** Preferences > Profiles > Text > Custom font > Select `JetBrainsMono Nerd Font`.
+* **Alacritty:** In `alacritty.toml`, set `font.normal.family = "JetBrainsMono Nerd Font"`.
+* **Kitty:** In `kitty.conf`, set `font_family JetBrainsMono Nerd Font`.
