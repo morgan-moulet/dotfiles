@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# run_once_before_10-install-packages.sh.tmpl
+# Auto-detects Linux distribution and installs core tools & user binaries
+# ==============================================================================
+set -euo pipefail
+
+mkdir -p "$HOME/.local/bin" "$HOME/.local/tmp"
+
+echo "==> [chezmoi] Checking system packages for {{ .chezmoi.osRelease.name | default .chezmoi.os }}..."
+
+{{ if eq .chezmoi.osRelease.id "rocky" "rhel" "centos" "fedora" "almalinux" -}}
+echo "==> Detected RedHat/Rocky family (DNF)..."
+if command -v sudo >/dev/null 2>&1; then
+  sudo dnf install -y epel-release || true
+  sudo dnf install -y fish git curl fzf ripgrep btop util-linux-user tar wget || true
+  sudo dnf install -y bat zoxide || true
+fi
+if command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
+  ln -sf "$(command -v fdfind)" "$HOME/.local/bin/fd"
+fi
+
+{{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" "raspbian" -}}
+echo "==> Detected Debian/Ubuntu family (APT)..."
+if command -v sudo >/dev/null 2>&1; then
+  sudo apt-get update && sudo apt-get install -y fish git curl fzf ripgrep btop batcat fdfind tar wget || true
+fi
+if [[ -x /usr/bin/batcat && ! -e "$HOME/.local/bin/bat" ]]; then
+  ln -sf /usr/bin/batcat "$HOME/.local/bin/bat"
+fi
+if [[ -x /usr/bin/fdfind && ! -e "$HOME/.local/bin/fd" ]]; then
+  ln -sf /usr/bin/fdfind "$HOME/.local/bin/fd"
+fi
+{{ end -}}
+
+# -----------------------------------------------------------------------------
+# User-space Modern Binaries (Arch: {{ .chezmoi.arch }})
+# -----------------------------------------------------------------------------
+
+# 1. Starship Prompt
+if ! command -v starship >/dev/null 2>&1 && [[ ! -x "$HOME/.local/bin/starship" ]]; then
+  echo "==> Installing Starship prompt..."
+  curl -sS https://starship.rs/install.sh | sh -s -- -y -b "$HOME/.local/bin"
+fi
+
+# 2. Zoxide
+if ! command -v zoxide >/dev/null 2>&1 && [[ ! -x "$HOME/.local/bin/zoxide" ]]; then
+  echo "==> Installing Zoxide..."
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+fi
+
+# 3. Eza (modern ls replacement)
+if ! command -v eza >/dev/null 2>&1 && [[ ! -x "$HOME/.local/bin/eza" ]]; then
+  echo "==> Installing Eza (v0.23.5)..."
+  curl -sL https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_64-unknown-linux-musl.tar.gz | tar -xz -C "$HOME/.local/bin/" ./eza
+  chmod +x "$HOME/.local/bin/eza"
+fi
+
+echo "==> [chezmoi] Prerequisites installed successfully!"

@@ -1,0 +1,5 @@
+# Chezmoi local state
+.chezmoistate.boltdb
+*.swp
+*~
+.DS_Store
