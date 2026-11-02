@@ -79,6 +79,7 @@ curl -sL https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_
 chmod +x ~/.local/bin/eza
 
 # JetBrainsMono Nerd Font (for Desktop terminals & IDEs: IntelliJ, VSCode, GNOME Terminal)
+mkdir -p ~/.local/share/fonts
 curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz | tar -xJ -C ~/.local/share/fonts/ JetBrainsMonoNerdFont-Regular.ttf JetBrainsMonoNerdFont-Bold.ttf
 command -v fc-cache >/dev/null 2>&1 && fc-cache -f ~/.local/share/fonts || true
 ```
@@ -140,7 +141,10 @@ chsh -s "$(which fish)"
 
 To display Nerd Font icons in your IDE or graphical terminal emulator:
 
-### 🔹 IntelliJ IDEA / PyCharm / WebStorm
+### 🔹 IntelliJ IDEA / PyCharm / WebStorm (incl. JetBrains Gateway / Remote SSH)
+> [!NOTE]
+> If using **JetBrains Gateway / Remote Development**, the GUI client runs on your **local machine** (e.g. Windows or macOS). You must install the font on your **local system**, not just the remote server, so the local JetBrains Client can render the icons!
+
 1. Open **Settings** (`Ctrl+Alt+S` on Linux/Windows, `Cmd+,` on macOS).
 2. Navigate to **Editor** > **Color Scheme** > **Console Font**.
 3. Check **Use console font instead of the default**.
