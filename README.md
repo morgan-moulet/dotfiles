@@ -34,8 +34,7 @@ Choose your system's package manager:
 #### 🔴 Rocky Linux / RHEL / Fedora (`dnf`)
 ```bash
 sudo dnf install -y epel-release
-sudo dnf install -y fish git curl fzf ripgrep btop util-linux-user
-sudo dnf install -y bat zoxide || true
+sudo dnf install -y fish git curl fzf ripgrep btop util-linux-user bat
 ```
 
 #### 🟣 Debian / Ubuntu (`apt`)
