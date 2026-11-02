@@ -1,72 +1,132 @@
-# 🛠️ Dotfiles
+# 🛠️ Dotfiles — Morgan's Workstations & Homelab
 
-> Centralized terminal and shell configuration managed across Linux workstations and servers (Debian, Ubuntu, Rocky Linux / RHEL) using [**Chezmoi**](https://www.chezmoi.io/).
+> Clean, minimalist terminal and shell configurations managed across Linux and macOS using [**Chezmoi**](https://www.chezmoi.io/).
 
 ---
 
-## 📦 Features & Included Utilities
+## 📦 What's Included
 
-* **Shell:** [Fish Shell](https://fishshell.com/) with autosuggestions and fast completion.
-* **Prompt:** [Starship](https://starship.rs/) cross-shell prompt:
+* **Shell:** [Fish Shell](https://fishshell.com/) with autosuggestions and fast syntax highlighting.
+* **Prompt:** [Starship](https://starship.rs/) prompt:
   * Two-line layout with Nerd Font icons on desktop terminals.
   * Automatic fallback to a clean text-only layout on mobile or basic terminals.
-* **Modern CLI Replacements:**
+* **Modern CLI Tools:**
   * **`eza`** for colorized, git-aware directory listings (`ls`, `ll`, `lt`).
   * **`bat`** for syntax-highlighted file viewing (`cat`).
-  * **`fd`** for fast and intuitive file searching.
-  * **`ripgrep`** (`rg`) for rapid recursive text search.
-  * **`duf`** & **`dust`** for modern disk usage visualization.
-  * **`btop`** for interactive system resource monitoring.
+  * **`fd`** for fast and intuitive file searching (`find`).
+  * **`ripgrep`** (`rg`) for rapid recursive text search (`grep`).
+  * **`duf`** & **`dust`** for modern disk usage visualization (`df`, `du`).
+  * **`btop`** for interactive system resource monitoring (`top`).
 * **Navigation & History:**
   * **`zoxide`** (`z <folder>`) for directory jumping based on frequency and recency.
   * **`fzf`** fuzzy finding integration for command history (`Ctrl+R`) and file selection (`Ctrl+T`, `Alt+C`).
 * **Git Productivity:**
-  * Package manager [Fisher](https://github.com/jorgebucaran/fisher) with [`jhillyerd/plugin-git`](https://github.com/jhillyerd/plugin-git) for dynamic expanding abbreviations (`gst`, `gco`, `gaa`, `gcm`, `gwip`, etc.).
-* **Multi-Distribution Automation:**
-  * Automated package installation for **Rocky Linux / RHEL / Fedora** (`dnf`).
-  * Automated package installation for **Debian / Ubuntu** (`apt`).
+  * Dynamic expanding abbreviations via [`jhillyerd/plugin-git`](https://github.com/jhillyerd/plugin-git) (`gst`, `gco`, `gaa`, `gcm`, `gwip`, etc.).
 
 ---
 
-## 🚀 Quick Start (One-Liner Installation)
+## 🚀 Installation & Setup
 
-On any fresh machine, run:
+### Step 1: Install Base Packages
+
+Choose your system's package manager:
+
+#### 🔴 Rocky Linux / RHEL / Fedora (`dnf`)
+```bash
+sudo dnf install -y epel-release
+sudo dnf install -y fish git curl fzf ripgrep btop util-linux-user
+sudo dnf install -y bat zoxide || true
+```
+
+#### 🟣 Debian / Ubuntu (`apt`)
+```bash
+sudo apt update
+sudo apt install -y fish git curl fzf ripgrep btop batcat fdfind
+# Standardize binary aliases if needed
+[[ -x /usr/bin/batcat && ! -e "$HOME/.local/bin/bat" ]] && ln -sf /usr/bin/batcat "$HOME/.local/bin/bat" || true
+[[ -x /usr/bin/fdfind && ! -e "$HOME/.local/bin/fd" ]] && ln -sf /usr/bin/fdfind "$HOME/.local/bin/fd" || true
+```
+
+#### 🔵 Arch Linux / Manjaro (`pacman`)
+```bash
+sudo pacman -S --needed fish git curl fzf ripgrep btop eza bat fd zoxide starship
+```
+
+#### 🍏 macOS (`brew`)
+```bash
+brew install fish git curl fzf ripgrep btop eza bat fd zoxide starship
+```
+
+#### 🟢 openSUSE (`zypper`)
+```bash
+sudo zypper install -y fish git curl fzf ripgrep btop bat zoxide
+```
+
+---
+
+### Step 2: Install Modern CLI Tools (if not in package manager)
+
+```bash
+mkdir -p ~/.local/bin
+
+# Starship Prompt
+curl -sS https://starship.rs/install.sh | sh -s -- -y -b ~/.local/bin
+
+# Zoxide (smarter cd)
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
+# Eza (modern ls)
+curl -sL https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_64-unknown-linux-musl.tar.gz | tar -xz -C ~/.local/bin/ ./eza
+chmod +x ~/.local/bin/eza
+```
+
+---
+
+### Step 3: Apply Configurations with Chezmoi
+
+Apply dotfiles directly from GitHub:
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply morgan-moulet
 ```
+*(Or via SSH: `sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply git@github.com:morgan-moulet/dotfiles.git`)*
 
-### Hardened / Enterprise Systems (Rocky Linux, RHEL with `noexec` `/tmp`)
-If your workstation or server mounts `/tmp` with `noexec` (causing `fork/exec: permission denied`), run the installer with a custom local temporary directory:
+---
+
+### Step 4: Setup Fisher & Git Plugin (inside Fish)
+
+Launch Fish and install the Git plugin:
 
 ```bash
-mkdir -p ~/.local/tmp && TMPDIR=$HOME/.local/tmp sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply git@github.com:morgan-moulet/dotfiles.git
+fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher && fisher install jhillyerd/plugin-git"
 ```
 
-This single command will:
-1. Download and initialize Chezmoi.
-2. Automatically detect the distribution (Rocky / RHEL / Fedora / Debian / Ubuntu).
-3. Install missing system packages (`fish`, `git`, `curl`, `fzf`, `ripgrep`, `btop`) and modern CLI tools (`starship`, `zoxide`, `eza`).
-4. Apply Fish and Starship configurations.
-5. Set up Fisher with `jhillyerd/plugin-git` and configure Fish as the default shell.
+To set Fish as your default shell:
+```bash
+chsh -s "$(which fish)"
+```
 
 ---
 
 ## 🔄 Daily Usage Commands
 
-* **Check diff between host and repository:**
+* **Check differences between machine and repo:**
   ```bash
   chezmoi diff
   ```
-* **Apply configuration changes:**
+* **Apply latest changes from the repo:**
   ```bash
   chezmoi apply
   ```
-* **Edit a managed file:**
+* **Pull latest changes from GitHub and apply:**
+  ```bash
+  chezmoi update
+  ```
+* **Edit a managed configuration:**
   ```bash
   chezmoi edit ~/.config/fish/config.fish
   ```
-* **Add a new configuration file:**
+* **Add a new configuration file to track:**
   ```bash
   chezmoi add ~/.gitconfig
   ```
