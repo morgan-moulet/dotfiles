@@ -7,7 +7,11 @@ set -euo pipefail
 
 if command -v fish >/dev/null 2>&1; then
   echo "==> [chezmoi] Setting up Fisher and Git plugin in Fish..."
-  fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher && fisher install jhillyerd/plugin-git" || true
+  mkdir -p "$HOME/.config/fish/functions"
+  if ! fish -c "type -q fisher" 2>/dev/null; then
+    curl -sSfL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish -o "$HOME/.config/fish/functions/fisher.fish"
+  fi
+  fish -c "fisher update" || true
   fish -c "set -Ua fish_features no-keyboard-protocols" || true
 
   # Set Fish as default login shell if needed
