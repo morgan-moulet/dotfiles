@@ -11,7 +11,7 @@ if command -v fish >/dev/null 2>&1; then
   if ! fish -c "type -q fisher" 2>/dev/null; then
     curl -sSfL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish -o "$HOME/.config/fish/functions/fisher.fish"
   fi
-  fish -c "fisher update" || true
+  fish -c "fisher update" </dev/null || true
   fish -c "set -Ua fish_features no-keyboard-protocols" || true
 
   # Set Fish as default login shell if needed
