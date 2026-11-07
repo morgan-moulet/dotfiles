@@ -67,7 +67,7 @@ else
 end
 
 if type -q bat
-    alias cat="bat --paging=never"
+    alias cat="bat -p --paging=never"
     alias bcat="bat"
 end
 
@@ -121,3 +121,13 @@ alias reload="source ~/.config/fish/config.fish"
 # Manual prompt switchers if needed
 alias prompt-plain="set -gx STARSHIP_CONFIG ~/.config/starship-plain.toml"
 alias prompt-nerd="set -gx STARSHIP_CONFIG ~/.config/starship.toml"
+
+# -----------------------------------------------------------------------------
+# 7. Tmux Multiplexer Shortcuts
+# -----------------------------------------------------------------------------
+if type -q tmux
+    alias ta="tmux attach -t"
+    alias tn="tmux new -s"
+    alias tl="tmux ls"
+    alias tk="tmux kill-session -t"
+end
