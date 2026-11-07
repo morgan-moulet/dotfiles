@@ -7,7 +7,7 @@
 ## 📦 What's Included
 
 * **Shell:** [Fish Shell](https://fishshell.com/) with autosuggestions and fast syntax highlighting.
-* **Multiplexer:** [tmux](https://github.com/tmux/tmux) optimized for AI agents & parallel workflows (100k scrollback, TrueColor RGB, OSC-52 clipboard, mouse support, instant escape, pane sync).
+* **Multiplexer:** [tmux](https://github.com/tmux/tmux) optimized for AI agents & parallel workflows (100k scrollback, TrueColor RGB, OSC-52 clipboard, mouse support, instant escape, pane sync) — see [**TMUX Cheatsheet**](./TMUX.md).
 * **Prompt:** [Starship](https://starship.rs/) prompt:
   * Two-line layout with Nerd Font icons on desktop terminals.
   * Automatic fallback to a clean text-only layout on mobile or basic terminals.
@@ -135,6 +135,13 @@ chsh -s "$(which fish)"
   ```bash
   chezmoi add ~/.gitconfig
   ```
+
+---
+
+## 🪟 Tmux Cheatsheet & AI Agent Shortcuts
+
+For full keyboard shortcuts, session management, and AI multi-agent workflows, consult the dedicated guide:  
+👉 [**TMUX Cheatsheet & Command Reference (`TMUX.md`)**](./TMUX.md)
 
 ---
 
