@@ -20,6 +20,12 @@ set -g fish_features no-keyboard-protocols
 # 2. Interactive Shell Integrations
 # -----------------------------------------------------------------------------
 if status is-interactive
+    # Auto-start / attach to Tmux by default in interactive logins
+    # (Bypass by setting NO_TMUX=1, e.g. 'NO_TMUX=1 fish')
+    if type -q tmux; and not set -q TMUX; and not set -q NO_TMUX; and test -z "$VSCODE_RESOLVING_ENVIRONMENT"; and test -z "$INTELLIJ_ENVIRONMENT_READER"
+        exec tmux new-session -A -s main
+    end
+
     # Auto-detect terminal font/type: use plain prompt on mobile/linux consoles, Nerd Fonts otherwise
     if test "$TERM" = "linux" -o "$TERM" = "dumb" -o "$TERM" = "vt100"
         set -gx STARSHIP_CONFIG "$HOME/.config/starship-plain.toml"

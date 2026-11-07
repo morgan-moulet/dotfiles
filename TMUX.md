@@ -81,8 +81,8 @@ Raccourcis spécifiquement configurés pour orchestrer plusieurs agents (Claude 
 | **`Prefix` + `z`** | **Zoom / Dézoom plein écran** | Agrandit le panneau de l'agent en plein écran pour lire un diff large ou un long flux de pensée, puis revient à la disposition normale. |
 | **`Alt` + `Flèches`** | **Changement de panneau instantané** | Bascule entre les agents sans avoir à taper le préfixe. |
 | **`Alt` + `h` `j` `k` `l` | **Navigation Vim rapide** | Même chose avec les touches Vim `h` (gauche), `j` (bas), `k` (haut), `l` (droite). |
-| **`Prefix` + `\|`** | **Split vertical (côte à côte)** | Divise le panneau verticalement **en conservant le dossier de travail courant**. |
-| **`Prefix` + `-`** | **Split horizontal (l'un sous l'autre)** | Divise le panneau horizontalement **en conservant le dossier de travail courant**. |
+| **`Prefix` + `\|`** ou **`v`** | **Split vertical (côte à côte)** | Divise le panneau verticalement **en conservant le dossier de travail courant** (ergonomique sur Mac AZERTY avec `v`). |
+| **`Prefix` + `-`** ou **`h`** | **Split horizontal (l'un sous l'autre)** | Divise le panneau horizontalement **en conservant le dossier de travail courant**. |
 | **`Prefix` + `x`** | **Fermer le panneau immédiatement** | Ferme le panneau sans la question de confirmation agaçante `kill-pane? (y/n)`. |
 
 ---
