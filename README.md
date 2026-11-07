@@ -7,6 +7,7 @@
 ## 📦 What's Included
 
 * **Shell:** [Fish Shell](https://fishshell.com/) with autosuggestions and fast syntax highlighting.
+* **Multiplexer:** [tmux](https://github.com/tmux/tmux) optimized for AI agents & parallel workflows (100k scrollback, TrueColor RGB, OSC-52 clipboard, mouse support, instant escape, pane sync).
 * **Prompt:** [Starship](https://starship.rs/) prompt:
   * Two-line layout with Nerd Font icons on desktop terminals.
   * Automatic fallback to a clean text-only layout on mobile or basic terminals.
@@ -34,13 +35,13 @@ Choose your system's package manager:
 #### 🔴 Rocky Linux / RHEL / Fedora (`dnf`)
 ```bash
 sudo dnf install -y epel-release
-sudo dnf install -y fish git curl fzf ripgrep btop util-linux-user bat
+sudo dnf install -y tmux fish git curl fzf ripgrep btop util-linux-user bat
 ```
 
 #### 🟣 Debian / Ubuntu (`apt`)
 ```bash
 sudo apt update
-sudo apt install -y fish git curl fzf ripgrep btop batcat fdfind
+sudo apt install -y tmux fish git curl fzf ripgrep btop batcat fdfind
 # Standardize binary aliases if needed
 [[ -x /usr/bin/batcat && ! -e "$HOME/.local/bin/bat" ]] && ln -sf /usr/bin/batcat "$HOME/.local/bin/bat" || true
 [[ -x /usr/bin/fdfind && ! -e "$HOME/.local/bin/fd" ]] && ln -sf /usr/bin/fdfind "$HOME/.local/bin/fd" || true
@@ -48,17 +49,17 @@ sudo apt install -y fish git curl fzf ripgrep btop batcat fdfind
 
 #### 🔵 Arch Linux / Manjaro (`pacman`)
 ```bash
-sudo pacman -S --needed fish git curl fzf ripgrep btop eza bat fd zoxide starship ttf-jetbrains-mono-nerd
+sudo pacman -S --needed tmux fish git curl fzf ripgrep btop eza bat fd zoxide starship ttf-jetbrains-mono-nerd
 ```
 
 #### 🍏 macOS (`brew`)
 ```bash
-brew install fish git curl fzf ripgrep btop eza bat fd zoxide starship font-jetbrains-mono-nerd-font
+brew install tmux fish git curl fzf ripgrep btop eza bat fd zoxide starship font-jetbrains-mono-nerd-font
 ```
 
 #### 🟢 openSUSE (`zypper`)
 ```bash
-sudo zypper install -y fish git curl fzf ripgrep btop bat zoxide
+sudo zypper install -y tmux fish git curl fzf ripgrep btop bat zoxide
 ```
 
 ---
