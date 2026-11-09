@@ -3,8 +3,15 @@
 # -----------------------------------------------------------------------------
 # 1. Environment & Paths
 # -----------------------------------------------------------------------------
-set -gx XDG_RUNTIME_DIR "/run/user/1000"
-set -gx DOCKER_HOST "unix:///run/user/1000/docker.sock"
+# Dynamically determine user runtime directory and rootless Docker socket
+set -l current_uid (id -u)
+if not set -q XDG_RUNTIME_DIR; and test -d "/run/user/$current_uid"
+    set -gx XDG_RUNTIME_DIR "/run/user/$current_uid"
+end
+
+if test -S "/run/user/$current_uid/docker.sock"
+    set -gx DOCKER_HOST "unix:///run/user/$current_uid/docker.sock"
+end
 set -gx VOLTA_HOME "$HOME/.volta"
 
 # Prepend user local binaries to PATH
