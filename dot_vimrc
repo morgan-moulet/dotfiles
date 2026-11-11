@@ -1,0 +1,94 @@
+" ==============================================================================
+" ~/.vimrc — Modern, Fast & Zero-Plugin Vim Configuration
+" Managed by Chezmoi (morgan-moulet/dotfiles)
+" ==============================================================================
+
+" ------------------------------------------------------------------------------
+" 1. Core & Compatibility
+" ------------------------------------------------------------------------------
+set nocompatible
+filetype plugin indent on
+syntax on
+
+" ------------------------------------------------------------------------------
+" 2. Display & Line Numbers
+" ------------------------------------------------------------------------------
+set number
+set relativenumber
+set cursorline
+set scrolloff=8
+set sidescrolloff=8
+set wrap
+set showcmd
+set showmode
+set laststatus=2
+
+" TrueColor & Terminal Colors
+if has('termguicolors')
+    set termguicolors
+endif
+set background=dark
+
+" ------------------------------------------------------------------------------
+" 3. Indentation & Tabs (4 spaces)
+" ------------------------------------------------------------------------------
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set autoindent
+set smartindent
+
+" ------------------------------------------------------------------------------
+" 4. Search & Matching
+" ------------------------------------------------------------------------------
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+
+" ------------------------------------------------------------------------------
+" 5. Mouse, Clipboard & Splits
+" ------------------------------------------------------------------------------
+" Enable mouse for scrolling, clicking, and visual selection
+if has('mouse')
+    set mouse=a
+endif
+
+" Sync with system clipboard (OSC 52 / X11 / Wayland)
+if has('unnamedplus')
+    set clipboard=unnamedplus,unnamed
+else
+    set clipboard=unnamed
+endif
+
+" Natural window split directions
+set splitbelow
+set splitright
+
+" ------------------------------------------------------------------------------
+" 6. Swap & Backup Hygiene (No clutter in git directories)
+" ------------------------------------------------------------------------------
+set nobackup
+set nowritebackup
+set noswapfile
+
+" ------------------------------------------------------------------------------
+" 7. Ergonomic Key Mappings
+" ------------------------------------------------------------------------------
+" Set Space as leader key
+let mapleader = " "
+
+" Quick save & quit
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+
+" Clear search highlight with Space + h
+nnoremap <leader>h :nohlsearch<CR>
+
+" Fast split navigation with Ctrl + hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l

@@ -28,6 +28,8 @@
 * **SSH Networking:**
   * Performance & resilience: KeepAlive (`ServerAliveInterval 60`), TCP connection multiplexing (`ControlMaster auto`) for near-instant SSH handshakes and Git pushes.
   * Modular architecture: machine-specific private hosts safely stored in `~/.ssh/config.local` (untracked, zero secret leaks).
+* **Terminal Editor:**
+  * Ultra-fast modern [`~/.vimrc`](./dot_vimrc): zero-plugin startup (<5ms), hybrid line numbers (`number relativenumber`), 4-space smart indentation, full mouse support, system clipboard sync (`unnamedplus`), search highlight clearing (`Space + h`), and zero `.swp` file pollution.
 * **Productivity Shell Functions:**
   * **`mkcd <dir>`** : Create a directory path recursively and `cd` into it immediately.
   * **`extract <file>`** : Universal smart archive extractor (`.tar.gz`, `.tar.xz`, `.zip`, `.7z`, `.tar.bz2`, `.rar`, etc.).
