@@ -93,7 +93,6 @@ curl -sL https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_
 chmod +x ~/.local/bin/eza
 
 # JetBrainsMono Nerd Font (for Desktop terminals & IDEs: IntelliJ, VSCode, GNOME Terminal)
-mkdir -p ~/.local/share/fonts
 curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz | tar -xJ -C ~/.local/share/fonts/ JetBrainsMonoNerdFont-Regular.ttf JetBrainsMonoNerdFont-Bold.ttf
 command -v fc-cache >/dev/null 2>&1 && fc-cache -f ~/.local/share/fonts || true
 ```

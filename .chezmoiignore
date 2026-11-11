@@ -1,0 +1,27 @@
+# ==============================================================================
+# .chezmoiignore — Files and patterns ignored by Chezmoi across all target hosts
+# ==============================================================================
+
+# Documentation and repository meta files (do not install into $HOME)
+README.md
+TMUX.md
+LICENSE
+.git
+.gitignore
+
+# OS-specific garbage
+**/.DS_Store
+**/Thumbs.db
+**/*.tmp
+**/*.temp
+
+# Editor temporary and swap files
+**/*.swp
+**/*.swo
+**/*~
+
+# Backup files
+**/*.bak
+**/*.bak_*
+**/*.old
+**/*.orig
