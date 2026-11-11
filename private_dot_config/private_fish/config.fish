@@ -44,8 +44,17 @@ if status is-interactive
         zoxide init fish | source
     end
 
-    # FZF key bindings (Ctrl+R history, Ctrl+T files, Alt+C cd)
+    # FZF key bindings & styling (Ctrl+R history, Ctrl+T files, Alt+C cd)
     if type -q fzf
+        set -gx FZF_DEFAULT_OPTS "--height=40% --layout=reverse --border=rounded --inline-info \
+            --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+            --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+            --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+
+        if type -q bat
+            set -gx FZF_CTRL_T_OPTS "--preview 'test -d {} && eza --tree --level=2 --icons=auto {} 2>/dev/null || bat -p --color=always --line-range :300 {} 2>/dev/null' --preview-window=right:50%:wrap"
+        end
+
         if fzf --fish >/dev/null 2>&1
             fzf --fish | source
         else if functions -q fzf_key_bindings

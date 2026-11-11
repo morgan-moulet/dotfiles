@@ -13,14 +13,14 @@
   * Automatic fallback to a clean text-only layout on mobile or basic terminals.
 * **Modern CLI Tools:**
   * **`eza`** for colorized, git-aware directory listings (`ls`, `ll`, `lt`).
-  * **`bat`** for syntax-highlighted file viewing (`cat`).
+  * **`bat`** for syntax-highlighted file viewing (`cat`) with `TwoDark` theme and custom syntax mappings (`compose*.yml`, `.env.*`).
   * **`fd`** for fast and intuitive file searching (`find`).
   * **`ripgrep`** (`rg`) for rapid recursive text search (`grep`).
   * **`duf`** & **`dust`** for modern disk usage visualization (`df`, `du`).
-  * **`btop`** for interactive system resource monitoring (`top`).
+  * **`btop`** for interactive system resource monitoring (`top`) with Vim key navigation (`h/j/k/l`), 1s refresh, and Docker volume noise filtering.
 * **Navigation & History:**
   * **`zoxide`** (`z <folder>`) for directory jumping based on frequency and recency.
-  * **`fzf`** fuzzy finding integration for command history (`Ctrl+R`) and file selection (`Ctrl+T`, `Alt+C`).
+  * **`fzf`** fuzzy finding integration for command history (`Ctrl+R`) and file selection (`Ctrl+T`, `Alt+C`) with instant `bat`/`eza` live preview.
 * **Git & Version Control:**
   * Universal [`~/.gitconfig`](./dot_gitconfig): auto-setup remote upstream, `main` default branch, safe pull rebase strategy.
   * Productivity aliases: `git lg` (visual graph), `git undo` (safe commit undo), `git unstage`, `git amend`, `git recent` (branches sorted by date), `git prune-branches` (delete merged local branches).

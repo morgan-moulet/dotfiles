@@ -1,0 +1,19 @@
+# ==============================================================================
+# ~/.config/bat/config — bat syntax highlighter configuration
+# Managed by Chezmoi (morgan-moulet/dotfiles)
+# ==============================================================================
+
+# Dark modern theme matching Starship and Tmux
+--theme="TwoDark"
+
+# Enable italic text support for compatible terminals
+--italic-text=always
+
+# 4-space tab indentation
+--tabs=4
+
+# Custom syntax mappings
+--map-syntax "*.env*:Bash"
+--map-syntax "Containerfile:Dockerfile"
+--map-syntax "*.service:INI"
+--map-syntax "compose*.yml:YAML"
