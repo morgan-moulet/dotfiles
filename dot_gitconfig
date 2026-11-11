@@ -1,0 +1,61 @@
+# ==============================================================================
+# ~/.gitconfig — Global Git Configuration
+# Managed by Chezmoi (morgan-moulet/dotfiles)
+# ==============================================================================
+
+[user]
+    name = Morgan Moulet-Berger
+    email = 2412255+morgan-moulet@users.noreply.github.com
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = false
+
+[push]
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+    pruneTags = false
+
+[core]
+    autocrlf = input
+    editor = vim
+    quotepath = false
+
+[color]
+    ui = auto
+
+[diff]
+    colorMoved = default
+    algorithm = histogram
+
+[merge]
+    conflictstyle = diff3
+
+# ------------------------------------------------------------------------------
+# Custom Git Aliases (Universal across Fish, Bash, Zsh & IDEs)
+# ------------------------------------------------------------------------------
+[alias]
+    # Quick Status & Visual Log Graphs
+    st = status -sb
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    last = log -1 HEAD --stat
+
+    # Undo & Unstage Helpers
+    undo = reset --soft HEAD~1
+    uncommit = reset HEAD~1
+    unstage = restore --staged
+    discard = checkout --
+
+    # Fast Amend Preserving Commit Message
+    amend = commit --amend --no-edit
+
+    # Branches Sorted by Most Recent Commit Date
+    recent = branch --sort=-committerdate --format='%(color:yellow)%(refname:short)%(color:reset) %(color:green)(%(committerdate:relative))%(color:reset) - %(contents:subject)'
+
+    # Clean Up Local Branches Deleted on Remote
+    prune-branches = "!git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -d"

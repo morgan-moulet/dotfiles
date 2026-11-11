@@ -1,0 +1,25 @@
+# ==============================================================================
+# ~/.ssh/config — Global SSH Client Configuration
+# Managed by Chezmoi (morgan-moulet/dotfiles)
+#
+# Machine-specific hosts & private keys belong in: ~/.ssh/config.local
+# (The Include directive automatically loads it if present)
+# ==============================================================================
+
+Include ~/.ssh/config.local
+
+# ------------------------------------------------------------------------------
+# Global Defaults & Performance Optimizations (All Hosts)
+# ------------------------------------------------------------------------------
+Host *
+    # Keep connections alive through NAT / firewalls
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+    # Fast SSH Multiplexing (re-uses existing TCP socket for instant new sessions/git pushes)
+    ControlMaster auto
+    ControlPath ~/.ssh/cm-%r@%h:%p
+    ControlPersist 10m
+
+    # Automatically add SSH keys to ssh-agent
+    AddKeysToAgent yes

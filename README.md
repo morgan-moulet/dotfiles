@@ -21,8 +21,13 @@
 * **Navigation & History:**
   * **`zoxide`** (`z <folder>`) for directory jumping based on frequency and recency.
   * **`fzf`** fuzzy finding integration for command history (`Ctrl+R`) and file selection (`Ctrl+T`, `Alt+C`).
-* **Git Productivity:**
+* **Git & Version Control:**
+  * Universal [`~/.gitconfig`](./dot_gitconfig): auto-setup remote upstream, `main` default branch, safe pull rebase strategy.
+  * Productivity aliases: `git lg` (visual graph), `git undo` (safe commit undo), `git unstage`, `git amend`, `git recent` (branches sorted by date), `git prune-branches` (delete merged local branches).
   * Dynamic expanding abbreviations via [`jhillyerd/plugin-git`](https://github.com/jhillyerd/plugin-git) (`gst`, `gco`, `gaa`, `gcm`, `gwip`, etc.).
+* **SSH Networking:**
+  * Performance & resilience: KeepAlive (`ServerAliveInterval 60`), TCP connection multiplexing (`ControlMaster auto`) for near-instant SSH handshakes and Git pushes.
+  * Modular architecture: machine-specific private hosts safely stored in `~/.ssh/config.local` (untracked, zero secret leaks).
 
 ---
 
