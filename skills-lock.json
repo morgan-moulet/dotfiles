@@ -1,0 +1,45 @@
+{
+  "version": 2,
+  "skills": {
+    "agent-git-workflow": {
+      "source": "git@github.com:morgan-moulet/ai-skills.git",
+      "sourceUrl": "git@github.com:morgan-moulet/ai-skills.git",
+      "commit": "d07e7275fc075b712773fcb43e5ce744b59fce57",
+      "sourceType": "git",
+      "skillPath": "skills/agent-git-workflow/SKILL.md",
+      "computedHash": "d1008b4f255433509af0a40a415fa276c1deb67825500d34606943faabc11def"
+    },
+    "conventional-commits": {
+      "source": "git@github.com:morgan-moulet/ai-skills.git",
+      "sourceUrl": "git@github.com:morgan-moulet/ai-skills.git",
+      "commit": "c95cdf4cea44430d71d81bccce22fccb4316d744",
+      "sourceType": "git",
+      "skillPath": "skills/conventional-commits/SKILL.md",
+      "computedHash": "36b6220d42cccbc35b0e72297d4e3a889b978b3350994740576eb0336ef117a4"
+    },
+    "missing-tool-management": {
+      "source": "git@github.com:morgan-moulet/ai-skills.git",
+      "sourceUrl": "git@github.com:morgan-moulet/ai-skills.git",
+      "commit": "c95cdf4cea44430d71d81bccce22fccb4316d744",
+      "sourceType": "git",
+      "skillPath": "skills/missing-tool-management/SKILL.md",
+      "computedHash": "b6025a332340d44de1402010829627a997d10637e3b952bf6f26aea23c20dcc6"
+    },
+    "pr-code-review": {
+      "source": "git@github.com:morgan-moulet/ai-skills.git",
+      "sourceUrl": "git@github.com:morgan-moulet/ai-skills.git",
+      "commit": "d07e7275fc075b712773fcb43e5ce744b59fce57",
+      "sourceType": "git",
+      "skillPath": "skills/pr-code-review/SKILL.md",
+      "computedHash": "94a2541375b519a34a1586983356ad4d54ffb3b61c96d495719e05380d5b2b02"
+    },
+    "transparent-step-reasoning": {
+      "source": "git@github.com:morgan-moulet/ai-skills.git",
+      "sourceUrl": "git@github.com:morgan-moulet/ai-skills.git",
+      "commit": "c95cdf4cea44430d71d81bccce22fccb4316d744",
+      "sourceType": "git",
+      "skillPath": "skills/transparent-step-reasoning/SKILL.md",
+      "computedHash": "caec7e408eaf0cacb7246df1373affbeed35444a612fdee8c3139e60a3623683"
+    }
+  }
+}

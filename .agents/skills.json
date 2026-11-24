@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agentskills.io/schema/skills-config.json",
+  "sources": [
+    {
+      "name": "ai-skills",
+      "url": "git@github.com:morgan-moulet/ai-skills.git",
+      "skills": [
+        "agent-git-workflow",
+        "conventional-commits",
+        "missing-tool-management",
+        "pr-code-review",
+        "transparent-step-reasoning"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "path": "skills"
+    }
+  ]
+}
