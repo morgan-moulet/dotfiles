@@ -4,10 +4,10 @@
     "agent-git-workflow": {
       "source": "git@github.com:morgan-moulet/ai-skills.git",
       "sourceUrl": "git@github.com:morgan-moulet/ai-skills.git",
-      "commit": "c95cdf4cea44430d71d81bccce22fccb4316d744",
+      "commit": "d07e7275fc075b712773fcb43e5ce744b59fce57",
       "sourceType": "git",
       "skillPath": "skills/agent-git-workflow/SKILL.md",
-      "computedHash": "f4c1776573a559028446dd13ea03e8495e640b9ab10d14f6f8733535623bff5e"
+      "computedHash": "d1008b4f255433509af0a40a415fa276c1deb67825500d34606943faabc11def"
     },
     "conventional-commits": {
       "source": "git@github.com:morgan-moulet/ai-skills.git",
@@ -28,10 +28,10 @@
     "pr-code-review": {
       "source": "git@github.com:morgan-moulet/ai-skills.git",
       "sourceUrl": "git@github.com:morgan-moulet/ai-skills.git",
-      "commit": "c95cdf4cea44430d71d81bccce22fccb4316d744",
+      "commit": "d07e7275fc075b712773fcb43e5ce744b59fce57",
       "sourceType": "git",
       "skillPath": "skills/pr-code-review/SKILL.md",
-      "computedHash": "d51b233f8b727541332da910acfa42dea0f6ba957eb7f9e03c70c05b7d37da20"
+      "computedHash": "94a2541375b519a34a1586983356ad4d54ffb3b61c96d495719e05380d5b2b02"
     },
     "transparent-step-reasoning": {
       "source": "git@github.com:morgan-moulet/ai-skills.git",

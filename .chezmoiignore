@@ -11,6 +11,7 @@ LICENSE
 .gitignore
 .github
 .agents
+scripts
 skills-lock.json
 
 # OS-specific garbage
