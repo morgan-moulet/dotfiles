@@ -5,9 +5,13 @@
 # Documentation and repository meta files (do not install into $HOME)
 README.md
 TMUX.md
+AGENTS.md
 LICENSE
 .git
 .gitignore
+.github
+.agents
+skills-lock.json
 
 # OS-specific garbage
 **/.DS_Store
